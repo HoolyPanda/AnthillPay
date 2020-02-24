@@ -62,7 +62,7 @@ class HumanCreator():
                     self.SaveCurrentParametr(int(id))
                     self.humanModel.GenerateaUserHash()
                     self.humanModel.SaveToJsonFile()
-                    return True
+
                     
 
             else:
