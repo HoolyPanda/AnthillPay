@@ -8,20 +8,25 @@ def main():
     try:
         session = vk_api.VkApi(token= token)
         lps = bot_longpoll.VkBotLongPoll(session, 172301854)
-        threads = []
+        views = []
         userIds = []
         for event in bot_longpoll.VkBotLongPoll.listen(lps):
+            for view in views:
+                if view.userId not in userIds:
+                    userIds.append(view.userId)
             rawEvent = event.raw
             userId = rawEvent['object']['from_id']
-            if userId not in userIds:
-                # TODO rewrite mainView in single thread
-                mV = mainView.mainView(session, userId, event= event)
-                # mv = mainView.mainView()
-                mV.start()
-                mV.join()
-                threads.append(mV)
-                userIds.append(userId)
-            # mainView.main()
+            
+            mV = mainView.mainView(session, userId, event= event)
+            if mV.userId not in userIds:
+                views.append(mV)
+                mV.ParseEvent(event)
+            for view in views:
+                if view.userId == userId:
+                    if view.ParseEvent(event) == True:
+                        views.remove(view)
+                break
+
             pass
     except Exception as e:
         print(str(e))
