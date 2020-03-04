@@ -65,6 +65,12 @@ class HumanCreator():
                 self.SaveCurrentParametr(int(self.id))
                 self.humanModel.GenerateaUserHash()
                 self.humanModel.SaveToJsonFile()
+                self.session.method('messages.send', {
+                    'message': f"Добро пожаловать в AnthillPay!",
+                    'peer_id': self.id,
+                    'random_id': random.randint(1, 10000000000000),
+                    'keyboard': assets.View.keyboards.mainKB
+                })
                 return True
             # TODO: payload eq 'false'
                 
