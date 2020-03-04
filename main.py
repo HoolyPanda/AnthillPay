@@ -20,6 +20,7 @@ def main():
             mV = mainView.mainView(session, userId, event= event)
             if mV.userId not in userIds:
                 views.append(mV)
+                userIds.append(mV.userId)
                 # mV.ParseEvent(event)
             for view in views:
                 if view.userId == userId:
