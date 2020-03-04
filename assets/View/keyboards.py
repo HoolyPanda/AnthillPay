@@ -1,5 +1,43 @@
 import json
 
+mKB = {
+    'one_time': True,
+    'buttons':
+    [
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"mainMenu\":\"finances\"}",
+                        "label": "Счет"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"mainMenu\":\"profile\"}",
+                        "label": "Профиль"
+                    },
+                "color": "secondary"
+            }
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"mainMenu\":\"history\"}",
+                        "label": "История"
+                    },
+                "color": "secondary"
+            }           
+        ]
+    ]
+}
+
 
 eKB = {
     'one_time': True,
@@ -110,3 +148,4 @@ hCKB = {
     }
 humanCreatorKB = json.dumps(hCKB)
 eyeColorKB = json.dumps(eKB)
+mainKB = json.dumps(mKB)

@@ -16,11 +16,11 @@ def main():
                     userIds.append(view.userId)
             rawEvent = event.raw
             userId = rawEvent['object']['from_id']
-            
+            #
             mV = mainView.mainView(session, userId, event= event)
             if mV.userId not in userIds:
                 views.append(mV)
-                mV.ParseEvent(event)
+                # mV.ParseEvent(event)
             for view in views:
                 if view.userId == userId:
                     if view.ParseEvent(event) == True:

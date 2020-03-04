@@ -11,6 +11,8 @@ class Human(object):
         self.password = password
         self.id = 0
         self.money = 0
+        self.transactions = []
+        # TODO: weapons 
     pass
 
     def GenerateaUserHash(self):
@@ -32,11 +34,13 @@ class Human(object):
 
     def AddMoney(self, amount: int):
         self.money = self.money + amount
+        self.transactions.append(f'+{str(amount)}')
         return True
 
     def RemoveMoney(self, amount: int):
         if self.money - amount >= 0:
             self.money = self.money - amount
+            self.transactions.append(f'-{str(amount)}')
             return True
         else:
             return False
@@ -62,6 +66,7 @@ class Human(object):
         self.money = profile['money']
         self.vkId = profile['vkId']
         self.password = profile['password']
+        self.transactions = profile['transactions']
         return self
 
     # @LoadFromJson.overload()
@@ -80,15 +85,16 @@ class Human(object):
             self.money = None
         self.vkId = modelDump['vkId']
         self.password = modelDump['password']
+        self.transactions = modelDump['transactions']
         return self        
 
 # a = Human(eyes= 'a', hair= 'b', name= "пробное имя")
 # a = Human()
 # a.SaveToJson()
-# a.LoadFromJson('./DB/пробное имя.json')
+# a.LoadFromJson('./DB/160500068.json')
 # a.RemoveMoney(100)
 # a.AddMoney(100)
-# a.SaveToJson()
-# a = Human().LoadFromJson('./DB/пробное имя.json')
+# a = Human().LoadFromJson('./DB/160500068.json')
 # a.AddMoney(100)
+# a.SaveToJsonFile()
 # print('')
