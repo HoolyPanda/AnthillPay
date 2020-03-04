@@ -7,7 +7,7 @@ token = open('./token.cred').read()
 def main():
     try:
         session = vk_api.VkApi(token= token)
-        lps = bot_longpoll.VkBotLongPoll(session, 172301854)
+        lps = bot_longpoll.VkBotLongPoll(session, 192654141)
         views = []
         userIds = []
         for event in bot_longpoll.VkBotLongPoll.listen(lps):
@@ -25,6 +25,7 @@ def main():
                 if view.userId == userId:
                     if view.ParseEvent(event) == True:
                         views.remove(view)
+                        userIds.remove(view.userId)
                 break
 
             pass
