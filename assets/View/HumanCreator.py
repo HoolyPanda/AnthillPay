@@ -79,7 +79,7 @@ class HumanCreator():
             if self.currentParametr:
                 self.SaveCurrentParametr(value)
                 self.session.method('messages.send', {
-                    'message': f"Параметр {self.currentParametr} успешно задан.",
+                    'message': f"Параметр успешно задан.",
                     'peer_id': self.id,
                     'random_id': random.randint(1, 10000000000000),
                     'keyboard': assets.View.keyboards.humanCreatorKB

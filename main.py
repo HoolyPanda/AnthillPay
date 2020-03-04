@@ -32,6 +32,6 @@ def main():
             pass
     except Exception as e:
         print(str(e))
-        quit
+        main()
 
 main()
