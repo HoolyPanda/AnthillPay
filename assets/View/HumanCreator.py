@@ -65,6 +65,7 @@ class HumanCreator():
                 self.SaveCurrentParametr(int(self.id))
                 self.humanModel.GenerateaUserHash()
                 self.humanModel.SaveToJsonFile()
+                self.humanModel.GenerateQR()
                 self.session.method('messages.send', {
                     'message': f"Добро пожаловать в AnthillPay!",
                     'peer_id': self.id,
