@@ -1,6 +1,11 @@
 import json
 from typing import overload
 
+import pyqrcode
+from pyqrcode import QRCode
+import base64
+# import pypng
+
 
 class Human(object):
     def __init__(self,name: str = None, hair: str = None, eyes: str = None, vkId: int= None, password: str = None):
@@ -23,6 +28,13 @@ class Human(object):
         
         pass
 
+    def GenerateQR(self):
+        payload = str(base64.b64encode(bytes(f'TransferMoneyTo {str(self.id)}', 'utf-8')), 'utf-8')
+        a = pyqrcode.create(payload)
+        a.png(f'./DB/QRs/{str(self.vkId)}.png', scale=6, module_color=[0, 0, 0, 255], background=[0xff, 0xff, 0xff])
+        # TODO: upload qr code to vk
+        pass
+
     def getMoney(self):
         return self.money
 
@@ -35,12 +47,14 @@ class Human(object):
     def AddMoney(self, amount: int):
         self.money = self.money + amount
         self.transactions.append(f'+{str(amount)}')
+        self.SaveToJsonFile()
         return True
 
     def RemoveMoney(self, amount: int):
         if self.money - amount >= 0:
             self.money = self.money - amount
             self.transactions.append(f'-{str(amount)}')
+            self.SaveToJsonFile()
             return True
         else:
             return False
@@ -92,6 +106,7 @@ class Human(object):
 # a = Human()
 # a.SaveToJson()
 # a.LoadFromJson('./DB/160500068.json')
+# a.GenerateQR()
 # a.RemoveMoney(100)
 # a.AddMoney(100)
 # a = Human().LoadFromJson('./DB/160500068.json')

@@ -33,7 +33,16 @@ mKB = {
                         "label": "История"
                     },
                 "color": "secondary"
-            }           
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"mainMenu\":\"QR\"}",
+                        "label": "Код"
+                    },
+                "color": "secondary"
+            }          
         ]
     ]
 }

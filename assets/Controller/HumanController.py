@@ -30,6 +30,17 @@ class HumanController:
                 return hm.LoadFromJson(path= f'{path}{f}')
         return None
 
+    def LoadHumanFromAPayID(self, aPayID: int):
+        path = './DB/'
+        for f in os.listdir(path):
+                if not os.path.isdir(f'{path}{f}'):
+                    hm = HM.Human()
+                    hm.LoadFromJson(path= f'{path}{f}')
+                    if hm.id == aPayID:
+                        self.loadedAccounts.append(hm.LoadFromJson(path= f'{path}{f}'))
+                        return hm.LoadFromJson(path= f'{path}{f}')
+        return None 
+
     def ParseEvent(self, event, account, session):
         rawEvent = event.raw['object']
         if 'payload' in rawEvent:
