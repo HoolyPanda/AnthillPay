@@ -1,4 +1,3 @@
-# TODO: add maoney with amount request
 import assets.Controller.HumanController as HumanController
 import assets.Model.HumanModel as HM
 

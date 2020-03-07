@@ -1,10 +1,12 @@
 import json
+import vk_api
+from vk_api import VkUpload 
+import requests
 from typing import overload
 
 import pyqrcode
 from pyqrcode import QRCode
 import base64
-# import pypng
 
 
 class Human(object):
@@ -17,6 +19,7 @@ class Human(object):
         self.id = 0
         self.money = 0
         self.transactions = []
+        self.QRcodeURL = ''
         # TODO: weapons 
     pass
 
@@ -31,8 +34,22 @@ class Human(object):
     def GenerateQR(self):
         payload = str(base64.b64encode(bytes(f'TransferMoneyTo {str(self.id)}', 'utf-8')), 'utf-8')
         a = pyqrcode.create(payload)
-        a.png(f'./DB/QRs/{str(self.vkId)}.png', scale=6, module_color=[0, 0, 0, 255], background=[0xff, 0xff, 0xff])
-        # TODO: upload qr code to vk
+        QRfile = f'./DB/QRs/{str(self.vkId)}.png'
+        a.png(QRfile, scale=8, module_color=[0, 0, 0, 255], background=[0xff, 0xff, 0xff])
+
+        login = open('./login.cred', 'r').readline()
+        password = open("./password.cred", 'r').readline()
+        groupID = 192654141
+        albumID = 271112751
+
+        client = vk_api.VkApi(login, password)
+        client.auth()
+        u = VkUpload(client)
+        a = u.photo(photos= QRfile, album_id= albumID, group_id= groupID, caption= f'{self.name}\'s QrCode')
+        a = a[0]
+        ownerId = a['owner_id']
+        mediaId = a['id']
+        self.QRcodeURL = f'photo{ownerId}_{mediaId}'
         pass
 
     def getMoney(self):
@@ -81,6 +98,7 @@ class Human(object):
         self.vkId = profile['vkId']
         self.password = profile['password']
         self.transactions = profile['transactions']
+        self.QRcodeURL = profile['QRcodeURL']
         return self
 
     # @LoadFromJson.overload()

@@ -73,5 +73,14 @@ class HumanController:
                         'peer_id': account.vkId,
                         'random_id': random.randint(1, 10000000000000)
                     })
+
+                if 'QR' in payload.values():
+                    session.method('messages.send', {
+                        'message': f"",
+                        'peer_id': account.vkId,
+                        'random_id': random.randint(1, 10000000000000),
+                        'attachment': account.QRcodeURL
+                    })
+
             pass
         return True

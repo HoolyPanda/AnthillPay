@@ -63,9 +63,10 @@ class HumanCreator():
             elif payload == 'confirm':
                 self.currentParametr = 'vkId'
                 self.SaveCurrentParametr(int(self.id))
+                self.humanModel.money = 200
                 self.humanModel.GenerateaUserHash()
-                self.humanModel.SaveToJsonFile()
                 self.humanModel.GenerateQR()
+                self.humanModel.SaveToJsonFile()
                 self.session.method('messages.send', {
                     'message': f"Добро пожаловать в AnthillPay!",
                     'peer_id': self.id,
