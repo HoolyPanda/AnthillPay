@@ -61,6 +61,11 @@ class HumanCreator():
                     'keyboard': assets.View.keyboards.humanCreatorKB
                 })
             elif payload == 'confirm':
+                self.session.method('messages.send', {
+                    'message': f"Обработка...",
+                    'peer_id': self.id,
+                    'random_id': random.randint(1, 10000000000000)
+                })
                 self.currentParametr = 'vkId'
                 self.SaveCurrentParametr(int(self.id))
                 self.humanModel.money = 200
