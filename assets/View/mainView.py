@@ -26,6 +26,7 @@ class mainView():
         self.hC = None
         self.HController = HumanController()
         self.MController = MoneyController()
+        self.isDone = False
         pass
     def ParseEvent(self, event):
 

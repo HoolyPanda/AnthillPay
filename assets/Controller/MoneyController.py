@@ -7,13 +7,13 @@ class MoneyController:
         self.tansactionInProgress = False
         self.seed: HM.Human
         self.peer: HM.Human
-        self.peerVkId: int
+        self.peerAPay: int
         pass
 
     def TransferMoney(self, to: int, fromVkID: int):
         hC = HumanController.HumanController()
         self.seed = hC.LoadHumanFromVkID(fromVkID)
-        self.peerVkId = fromVkID
+        self.peerAPay = to
         self.tansactionInProgress = True
 
     def ParseEvent(self, fromVkID, event):
@@ -23,7 +23,7 @@ class MoneyController:
             transferAmount = int(event['text'])
             if transferAmount > 0:
                 if self.seed.RemoveMoney(transferAmount):
-                    self.peer = HumanController.HumanController().LoadHumanFromVkID(self.peerVkId)
+                    self.peer = HumanController.HumanController().LoadHumanFromAPayID(self.peerAPay)
                     self.peer.AddMoney(transferAmount)
                     self.tansactionInProgress = False
                     return True
