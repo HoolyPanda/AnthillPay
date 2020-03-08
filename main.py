@@ -35,7 +35,7 @@ def main():
                 views.append(mV)
                 userIds.append(mV.userId)
                 # mV.ParseEvent(event)
-            a = threading.Thread(target= parseStuff, args= {event, userId,})
+            a = threading.Thread(target= parseStuff, kwargs= {'event':event, "userId":userId})
             a.start()
             # for view in views:
             #     if view.userId == userId:
