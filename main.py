@@ -2,6 +2,7 @@ import vk_api
 from vk_api import bot_longpoll
 import threading
 import assets.View.mainView as mainView
+import json
 
 token = open('./token.cred').read()
 
@@ -10,6 +11,7 @@ views = []
 userIds = []
 
 def parseStuff(userId, event):
+    print(json.dumps(event.raw['object']))
     for view in views:
         if view.userId == userId:
             if view.ParseEvent(event) == True:
