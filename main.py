@@ -17,6 +17,7 @@ def parseStuff(userId, event):
             if view.ParseEvent(event) == True:
                 views.remove(view)
                 userIds.remove(view.userId)
+            break
     
 
 def main():
