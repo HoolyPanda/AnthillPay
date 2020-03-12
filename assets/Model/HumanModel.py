@@ -28,7 +28,7 @@ class Human(object):
 
     def GenerateaUserHash(self):
         try: #stangebug
-            self.id = hash(str([str.encode(self.hairColor, encoding= 'utf-8'), str.encode(self.eyes, encoding= 'utf-8'), str.encode(str(self.vkId), encoding= 'utf-8'), self.name, str.encode(self.password, encoding= 'utf-8')]))
+            self.id = hash(str([str.encode(self.hairColor, encoding= 'utf-8'), str.encode(self.eyeColor, encoding= 'utf-8'), str.encode(str(self.vkId), encoding= 'utf-8'), self.name, str.encode(self.password, encoding= 'utf-8')]))
         except Exception:
             self.id = 0
         
