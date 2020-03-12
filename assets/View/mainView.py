@@ -93,12 +93,6 @@ class mainView():
                     'keyboard': keyboards.humanCreatorKB
                 })
             else:
-                self.session.method('messages.send', {
-                    'message': '-',
-                    'peer_id': self.userId,
-                    'random_id': random.randint(1, 10000000000000),
-                    'keyboard': keyboards.humanCreatorKB
-                })
                 if self.hC.ParseEvent(event) == True:
                     return True
                 else:

@@ -74,7 +74,7 @@ class HumanCreator():
                 self.session.method('messages.send', {
                     'message': "Задайте пароль для Вашего чипа безопасности.\nНе сообщайте его никому и удалите сообщение с ним",
                     'peer_id': self.id,
-                    'random_id': random.randint(1, 10000000000000),
+                    'random_id': random.randint(1, 10000000000000)
                 })
                 self.currentParametr = payload
             elif payload == 'hair':
