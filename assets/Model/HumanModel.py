@@ -10,22 +10,25 @@ import base64
 
 
 class Human(object):
-    def __init__(self,name: str = None, hair: str = None, eyes: str = None, vkId: int= None, password: str = None):
-        self.hair = hair
-        self.eyes = eyes
+    def __init__(self, name: str = None, hair: str = None, eyes: str = None, vkId: int= None, password: str = None):
+        self.hairColor = hair
+        self.eyeColor = eyes
         self.name = name
         self.vkId = vkId
         self.password = password
         self.id = 0
         self.money = 0
+        self.district = ''
+        self.work = ''
         self.transactions = []
         self.QRcodeURL = ''
+        self.evidences = []
         # TODO: weapons 
     pass
 
     def GenerateaUserHash(self):
-        try:
-            self.id = hash(str([str.encode(self.hair, encoding= 'utf-8'), str.encode(self.eyes, encoding= 'utf-8'), str.encode(str(self.vkId), encoding= 'utf-8'), self.name, str.encode(self.password, encoding= 'utf-8')]))
+        try: #stangebug
+            self.id = hash(str([str.encode(self.hairColor, encoding= 'utf-8'), str.encode(self.eyes, encoding= 'utf-8'), str.encode(str(self.vkId), encoding= 'utf-8'), self.name, str.encode(self.password, encoding= 'utf-8')]))
         except Exception:
             self.id = 0
         
@@ -35,7 +38,7 @@ class Human(object):
         payload = str(base64.b64encode(bytes(f'TransferMoneyTo {str(self.id)}', 'utf-8')), 'utf-8')
         a = pyqrcode.create(payload)
         QRfile = f'./DB/QRs/{str(self.vkId)}.png'
-        a.png(QRfile, scale=8, module_color=[0, 0, 0, 255], background=[0xff, 0xff, 0xff])
+        a.png(QRfile, scale=8, module_color= [0, 0, 0, 255], background=[0xff, 0xff, 0xff])
 
         login = open('./login.cred', 'r').readline()
         password = open("./password.cred", 'r').readline()
@@ -45,7 +48,7 @@ class Human(object):
         client = vk_api.VkApi(login, password)
         client.auth()
         u = VkUpload(client)
-        a = u.photo(photos= QRfile, album_id= albumID, group_id= groupID, caption= f'{self.name}\'s QrCode')
+        a = u.photo(photos= QRfile, album_id= albumID, group_id= groupID, caption= f'QrCode')
         a = a[0]
         ownerId = a['owner_id']
         mediaId = a['id']
@@ -90,34 +93,12 @@ class Human(object):
     def LoadFromJson(self, path: str):
         profile = open(path, 'r').read()
         profile = json.loads(profile)
-        self.name = profile['name'] 
-        self.eyes = profile['eyes']
-        self.hair = profile['hair']
-        self.id = profile['id']
-        self.money = profile['money']
-        self.vkId = profile['vkId']
-        self.password = profile['password']
-        self.transactions = profile['transactions']
-        self.QRcodeURL = profile['QRcodeURL']
+        self.__dict__.update(profile)
         return self
 
     # @LoadFromJson.overload()
-    def LoadFromJsonObject(self, modelDump:{}):
-        self.name = modelDump['name'] 
-        self.eyes = modelDump['eyes']
-        self.hair = modelDump['hair']
-        if 'id' in modelDump:
-            self.id = modelDump['id']
-        else:
-            self.id = None
-
-        if 'money' in modelDump:
-            self.money = modelDump['money']
-        else:
-            self.money = None
-        self.vkId = modelDump['vkId']
-        self.password = modelDump['password']
-        self.transactions = modelDump['transactions']
+    def LoadFromJsonObject(self, profile:{}):
+        self.__dict__.update(profile)
         return self        
 
 # a = Human(eyes= 'a', hair= 'b', name= "пробное имя")

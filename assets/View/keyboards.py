@@ -1,5 +1,5 @@
 import json
-
+# TODO musics KB
 mKB = {
     'one_time': True,
     'buttons':
@@ -47,6 +47,202 @@ mKB = {
     ]
 }
 
+dKB = {
+    'one_time': True,
+    'buttons':
+    [        
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"homeDistrict\":\"Фавеллы\"}",
+                        "label": "Фавеллы"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"homeDistrict\":\"Ист-Енд\"}",
+                        "label": "Ист-Енд"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"homeDistrict\":\"Коулун\"}",
+                        "label": "Коулун"
+                    },
+                "color": "secondary"
+            }               
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"homeDistrict\":\"Тобэй\"}",
+                        "label": "Тобэй"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"homeDistrict\":\"Доминго\"}",
+                        "label": "Доминго"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"homeDistrict\":\"Дурбан\"}",
+                        "label": "Дурбан"
+                    },
+                "color": "secondary"
+            }               
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"homeDistrict\":\"Кангване\"}",
+                        "label": "Кангване"
+                    },
+                "color": "secondary"
+            } 
+        ]
+        
+    ]
+}
+
+heKB = {
+    'one_time': True,
+    'buttons':
+    [
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"height\":\"short\"}",
+                        "label": "Низкий"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"height\":\"medium\"}",
+                        "label": "Средний"
+                    },
+                "color": "secondary"
+            }
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"height\":\"tall\"}",
+                        "label": "Высокий"
+                    },
+                "color": "secondary"
+            }         
+        ]
+    ]
+}
+
+nKB = {
+    'one_time': True,
+    'buttons':[]
+}
+
+wKB = {
+    'one_time': True,
+    'buttons':
+    [        
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"shogun\"}",
+                        "label": "ShoGun"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"sintech\"}",
+                        "label": "SinTech"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"cybersteel\"}",
+                        "label": "CyberSteel"
+                    },
+                "color": "secondary"
+            }               
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"c-corp\"}",
+                        "label": "C-Corp"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"dell\"}",
+                        "label": "Dell"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"obsnews\"}",
+                        "label": "OBS News"
+                    },
+                "color": "secondary"
+            }               
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"workless\"}",
+                        "label": "Безработный"
+                    },
+                "color": "secondary"
+            } 
+        ]
+        
+    ]
+}
 
 eKB = {
     'one_time': True,
@@ -57,7 +253,7 @@ eKB = {
                 "action":
                     {
                         "type":"text",
-                        "payload": "{\"eyeColor\":\"green\"}",
+                        "payload": "{\"eyeColor\":\"зеленые\"}",
                         "label": "Зеленый"
                     },
                 "color": "secondary"
@@ -66,7 +262,7 @@ eKB = {
                 "action":
                     {
                         "type":"text",
-                        "payload": "{\"eyeColor\":\"blue\"}",
+                        "payload": "{\"eyeColor\":\"Синие\"}",
                         "label": "Синий"
                     },
                 "color": "secondary"
@@ -77,16 +273,70 @@ eKB = {
                 "action":
                     {
                         "type":"text",
-                        "payload": "{\"eyeColor\":\"brown\"}",
-                        "label": "Карие"
+                        "payload": "{\"eyeColor\":\"коричневые\"}",
+                        "label": "Карий"
                     },
                 "color": "secondary"
             }               
         ]   
     ]
 }
-
-hCKB = {
+hairKB = {
+        'one_time': True,
+        'buttons':
+        [
+            [
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"hairColor\":\"Русые\"}",
+                            "label": "Русые"
+                        },
+                    "color": "secondary"
+                },
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"hairColor\":\"Шатен\"}",
+                            "label": "Шатен"
+                        },
+                    "color": "secondary"
+                },
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"hairColor\":\"Рыжие\"}",
+                            "label": "Рыжие"
+                        },
+                    "color": "secondary"
+                }                     
+            ],
+            [
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"hairColor\":\"Брюнет\"}",
+                            "label": "Брюнет"
+                        },
+                    "color": "secondary"
+                },
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"hairColor\":\"Цветные\"}",
+                            "label": "Цветные"
+                        },
+                    "color": "secondary"
+                }                     
+            ]
+        ]
+}
+hCKB =  {
         'one_time': True,
         'buttons':
         [
@@ -104,11 +354,20 @@ hCKB = {
                     "action":
                         {
                             "type":"text",
-                            "payload": "{\"button\":\"password\"}",
-                            "label": "Пароль"
+                            "payload": "{\"button\":\"work\"}",
+                            "label": "Работа"
                         },
                     "color": "secondary"
-                }                
+                },
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"button\":\"district\"}",
+                            "label": "Район"
+                        },
+                    "color": "secondary"
+                }                     
             ],
             [
                 {
@@ -129,7 +388,28 @@ hCKB = {
                             "label": "Цвет волос"
                         },
                     "color": "secondary"
-                }                
+                }                  
+            ],
+            [
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"button\":\"height\"}",
+                            "label": "Рост"
+                        },
+                    "color": "secondary"
+                
+                },
+                {
+                    "action":
+                        {
+                            "type":"text",
+                            "payload": "{\"button\":\"password\"}",
+                            "label": "Пароль"
+                        },
+                    "color": "secondary"
+                }    
             ],
             [
                 {
@@ -155,6 +435,12 @@ hCKB = {
             ]
         ]
     }
+
+districtKB = json.dumps(dKB)
+nullKB = json.dumps(nKB)
+heightKB = json.dumps(heKB)
+worksKB = json.dumps(wKB)
+hairKB = json.dumps(hairKB)    
 humanCreatorKB = json.dumps(hCKB)
 eyeColorKB = json.dumps(eKB)
 mainKB = json.dumps(mKB)
