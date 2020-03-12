@@ -46,7 +46,8 @@ class mainView():
                         self.session.method('messages.send', {
                             'message': 'Введите сумму перевода',
                             'peer_id': self.userId,
-                            'random_id': random.randint(1, 10000000000000)
+                            'random_id': random.randint(1, 10000000000000),
+                            'keyboard': keyboards.nullKB
                         })       
                         return False                 
                 except Exception as e:

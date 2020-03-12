@@ -113,6 +113,7 @@ class HumanCreator():
                 pass
 
             elif payload == 'eyeColor':
+                self.currentParametr = 'eyeColor'
                 self.SaveCurrentParametr(json.loads(event.raw['object']['payload'])[payload])
                 self.session.method('messages.send', {
                     'message': f"Параметр успешно задан.",
@@ -130,6 +131,7 @@ class HumanCreator():
                 })
 
             elif payload == 'confirm':
+                # TODO fields check 
                 self.session.method('messages.send', {
                     'message': f"Обработка...",
                     'peer_id': self.id,
@@ -152,7 +154,7 @@ class HumanCreator():
                 
 
         else:
-            if self.currentParametr:
+            if self.currentParametr != '':
                 self.SaveCurrentParametr(value)
                 self.session.method('messages.send', {
                     'message': f"Параметр успешно задан.",
@@ -161,6 +163,15 @@ class HumanCreator():
                     'keyboard': assets.View.keyboards.humanCreatorKB
                 })
                 self.currentParametr = ''
+            else:
+                self.session.method('messages.send', {
+                    'message': f"Выберете параметр",
+                    'peer_id': self.id,
+                    'random_id': random.randint(1, 10000000000000),
+                    'keyboard': assets.View.keyboards.humanCreatorKB
+                })
+                return True
+                
         pass
         # pass
 
