@@ -166,7 +166,23 @@ nKB = {
     'one_time': True,
     'buttons':[]
 }
-
+bKB = {
+    'one_time': True,
+    'buttons':
+    [ 
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"--\":\"--\"}",
+                        "label": "Начать"
+                    },
+                "color": "secondary"
+            }               
+        ]   
+    ]
+}
 wKB = {
     'one_time': True,
     'buttons':
@@ -436,6 +452,7 @@ hCKB =  {
         ]
     }
 
+beginKB  = json.dumps(bKB)
 districtKB = json.dumps(dKB)
 nullKB = json.dumps(nKB)
 heightKB = json.dumps(heKB)

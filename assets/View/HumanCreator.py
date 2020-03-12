@@ -154,7 +154,7 @@ class HumanCreator():
                 
 
         else:
-            if self.currentParametr != '':
+            if self.currentParametr == 'name' or self.currentParametr == 'password':
                 self.SaveCurrentParametr(value)
                 self.session.method('messages.send', {
                     'message': f"Параметр успешно задан.",
@@ -165,10 +165,10 @@ class HumanCreator():
                 self.currentParametr = ''
             else:
                 self.session.method('messages.send', {
-                    'message': f"Выберете параметр",
+                    'message': f"Во время заполнения профиля произошла ошибка. Нажмите на кнопку, чтобы начать заново",
                     'peer_id': self.id,
                     'random_id': random.randint(1, 10000000000000),
-                    'keyboard': assets.View.keyboards.humanCreatorKB
+                    'keyboard': assets.View.keyboards.beginKB
                 })
                 return True
                 
