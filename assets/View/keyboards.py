@@ -1,5 +1,4 @@
 import json
-# TODO musics KB
 mKB = {
     'one_time': False,
     'buttons':

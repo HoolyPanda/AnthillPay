@@ -27,11 +27,11 @@ class APIController:
         request = json.loads(event.raw['object']['text'])
         a =0
         if request['action'] == 'hack':
+            victimApayID = request['victimID']
+            hackerVkID = request['hackerVkID']
+            hackingPoints = request['hackingPoints']
             if request['type'] == 'money':
                 stolenMoney = request['amount']
-                victimApayID = request['victimID']
-                hackerVkID = request['hackerVkID']
-                hackingPoints = request['hackingPoints']
                 victim = self.HumanController.LoadHumanFromAPayID(victimApayID)
                 hacker = self.HumanController.LoadHumanFromVkID(hackerVkID)
                 evidenceNumber = random.randint(1,4)
@@ -54,9 +54,6 @@ class APIController:
                 else:
                     pass
             elif request['type'] == 'profile':
-                victimApayID = request['victimID']
-                hackerVkID = request['hackerVkID']
-                hackingPoints = request['hackingPoints']
                 victim = self.HumanController.LoadHumanFromAPayID(victimApayID)
                 hacker = self.HumanController.LoadHumanFromVkID(hackerVkID)
                 evidences = {
@@ -68,22 +65,23 @@ class APIController:
                 }
                 victim.evidences.append(evidences)
                 victim.SaveToJsonFile()
-                payload = f"""Имя: {victim.name}
-                              Цвет Глаз: {victim.eyeColor}
-                              Цвет Волос: {victim.hairColor}
-                              Место Работы: {victim.work}
-                              Родился в: {victim.district}
-                              Пароль Безопасности: {victim.password}
-                               """         
-                self.session.method('messages.send', {
-                        'message': payload,
-                        'peer_id': hackerVkID,
-                        'random_id': 0,
-                        'attachment': victim.QRcodeURL 
-                    }) 
-                self.session.method('messages.send', {
-                        'message': "Выполнен вход с другого устройства",
-                        'peer_id': victim.vkId,
-                        'random_id': 0
-                    }) 
+                if hackingPoints > 0:
+                    payload = f"""Имя: {victim.name}
+                                Цвет Глаз: {victim.eyeColor}
+                                Цвет Волос: {victim.hairColor}
+                                Место Работы: {victim.work}
+                                Родился в: {victim.district}
+                                Пароль Безопасности: {victim.password}
+                                """         
+                    self.session.method('messages.send', {
+                            'message': payload,
+                            'peer_id': hackerVkID,
+                            'random_id': 0,
+                            'attachment': victim.QRcodeURL 
+                        }) 
+                    self.session.method('messages.send', {
+                            'message': "Выполнен вход с другого устройства",
+                            'peer_id': victim.vkId,
+                            'random_id': 0
+                        }) 
                 return True
