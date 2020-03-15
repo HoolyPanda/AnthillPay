@@ -11,11 +11,11 @@ import base64
 
 class Human(object):
     def __init__(self, name: str = None, hair: str = None, eyes: str = None, vkId: int= None, password: str = None):
-        self.hairColor = hair
-        self.eyeColor = eyes
-        self.name = name
-        self.vkId = vkId
-        self.password = password
+        self.hairColor = None
+        self.eyeColor = None
+        self.name = None
+        self.vkId = None
+        self.password = None
         self.id = 0
         self.money = 0
         self.district = ''
@@ -23,6 +23,8 @@ class Human(object):
         self.transactions = []
         self.QRcodeURL = ''
         self.evidences = []
+        self.height = ''
+
         # TODO: weapons 
     pass
 

@@ -132,13 +132,40 @@ class HumanCreator():
 
             elif payload == 'confirm':
                 # TODO fields check 
+                self.currentParametr = 'vkId'
+                self.SaveCurrentParametr(int(self.id))
+                notEssentialsParams = ["QRcodeURL", 'evidences', 'id', 'money', 'transactions']
                 self.session.method('messages.send', {
                     'message': f"Обработка...",
                     'peer_id': self.id,
                     'random_id': random.randint(1, 10000000000000)
                 })
-                self.currentParametr = 'vkId'
-                self.SaveCurrentParametr(int(self.id))
+                payload = ''
+                a = self.humanModel.__dict__
+                for param in self.humanModel.__dict__:
+                    if param not in notEssentialsParams:
+                        if not self.humanModel.__dict__[param]:
+                            translation = {
+                                'name': 'Имя',
+                                'work': 'Место работы',
+                                'district': 'Место рождения',
+                                'eyeColor': 'Глаза',
+                                'hairColor': 'Цвет волос',
+                                'height': 'Рост',
+                                'money': 'Денег на счету: ',
+                                'id': 'Личный код: ',
+                                'password': 'Пароль'
+                            }
+                            payload += f'===>{translation[param]}\n'
+                if payload:
+                    self.session.method('messages.send', {
+                        'message': f"Вы не заполнили поля:\n{payload}",
+                        'peer_id': self.id,
+                        'random_id': random.randint(1, 10000000000000),
+                        'keyboard': assets.View.keyboards.humanCreatorKB
+                    })
+                    return False
+
                 self.humanModel.money = 200
                 self.humanModel.GenerateaUserHash()
                 self.humanModel.GenerateQR()
@@ -151,6 +178,14 @@ class HumanCreator():
                 })
                 return True
             # TODO: payload eq 'false'
+            elif payload == 'end':
+                self.session.method('messages.send', {
+                    'message': f"Завершение",
+                    'peer_id': self.id,
+                    'random_id': random.randint(1, 10000000000000),
+                    'keyboard': assets.View.keyboards.beginKB
+                })
+                return True 
                 
 
         else:
