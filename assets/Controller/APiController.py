@@ -10,16 +10,42 @@ class APIController:
         self.HumanController = HumanController.HumanController()
         pass
 
-    def GenerateEvidences(self, hackingPoints: int, victim, hacker):
+    def GenerateEvidences(self, hackingPoints: int, victim, hacker: HumanController.HM):
         evidences = {}
-        if hackingPoints <= 40:
-            evidences.update({'name': hacker.name, 'work': hacker.work})
+        if hackingPoints <= 20:
+            evidences.update({
+                'name': hacker.name, 
+                'work': hacker.work,
+                'hair': hacker.hairColor,
+                'eyes': hacker.eyeColor,
+                'district': hacker.district
+                })
             pass
-        elif hackingPoints > 50:
-            evidences.update({'work': hacker.work})
+        elif hackingPoints <= 30:
+            evidences.update({ 
+                'work': hacker.work,
+                'hair': hacker.hairColor,
+                'eyes': hacker.eyeColor,
+                'district': hacker.district                
+                })
+            pass 
+        elif hackingPoints <= 50:
+            evidences.update({ 
+                'work': hacker.work,
+                'hairColor': hacker.hairColor,
+                'district': hacker.district                
+                })
             pass
-        elif hackingPoints > 70:
-            evidences.update({'eyes': hacker.eyes})
+        elif hackingPoints <= 70:
+            evidences.update({ 
+                'work': hacker.work,
+                'district': hacker.district                
+                })
+            pass 
+        elif hackingPoints == 80:
+            evidences.update({
+                'district': hacker.district                
+                })
             pass
         return evidences
 
@@ -37,7 +63,7 @@ class APIController:
                 evidenceNumber = random.randint(1,4)
                 evidences = self.GenerateEvidences(hackingPoints= hackingPoints, victim= victim, hacker= hacker)
                 victim.evidences.append(evidences)
-
+                victim.SaveToJsonFile()
                 if self.MoneyController.FixedMoneyTransaction(frm= victim, to= hacker, amount= stolenMoney):
                     self.session.method('messages.send', {
                         'message': f'ERROR ERROR\nС000000вершен4 прод4ж4 н4 сумму {str(stolenMoney)}',
@@ -57,7 +83,6 @@ class APIController:
                 victim = self.HumanController.LoadHumanFromAPayID(victimApayID)
                 hacker = self.HumanController.LoadHumanFromVkID(hackerVkID)
                 evidences = {
-                    'name': hacker.name,
                     'work': hacker.work,
                     'hair': hacker.hairColor,
                     'eyes': hacker.eyeColor,

@@ -131,7 +131,6 @@ class HumanCreator():
                 })
 
             elif payload == 'confirm':
-                # TODO fields check 
                 self.currentParametr = 'vkId'
                 self.SaveCurrentParametr(int(self.id))
                 notEssentialsParams = ["QRcodeURL", 'evidences', 'id', 'money', 'transactions']
@@ -177,7 +176,6 @@ class HumanCreator():
                     'keyboard': assets.View.keyboards.mainKB
                 })
                 return True
-            # TODO: payload eq 'false'
             elif payload == 'end':
                 self.session.method('messages.send', {
                     'message': f"Завершение",

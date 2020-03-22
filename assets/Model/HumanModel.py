@@ -25,7 +25,6 @@ class Human(object):
         self.evidences = []
         self.height = ''
 
-        # TODO: weapons 
     pass
 
     def GenerateaUserHash(self):
@@ -102,15 +101,3 @@ class Human(object):
     def LoadFromJsonObject(self, profile:{}):
         self.__dict__.update(profile)
         return self        
-
-# a = Human(eyes= 'a', hair= 'b', name= "пробное имя")
-# a = Human()
-# a.SaveToJson()
-# a.LoadFromJson('./DB/160500068.json')
-# a.GenerateQR()
-# a.RemoveMoney(100)
-# a.AddMoney(100)
-# a = Human().LoadFromJson('./DB/160500068.json')
-# a.AddMoney(100)
-# a.SaveToJsonFile()
-# print('')

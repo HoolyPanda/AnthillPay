@@ -11,6 +11,7 @@ class MoneyController:
         pass
 
     def TransferMoney(self, to: int, fromVkID: int):
+        # TODO: transaction host name
         hC = HumanController.HumanController()
         self.seed = hC.LoadHumanFromVkID(fromVkID)
         self.peerAPay = to
@@ -18,11 +19,14 @@ class MoneyController:
 
     def FixedMoneyTransaction(self, to: HM.Human, frm: HM.Human, amount: int):
         if frm.getMoney() >= amount:
-            frm.RemoveMoney(amount)
-            to.AddMoney(amount)
-            frm.SaveToJsonFile()
-            to.SaveToJsonFile()
-            return True
+            if frm.id != to.id:
+                frm.RemoveMoney(amount)
+                frm.SaveToJsonFile()
+                to.AddMoney(amount)
+                to.SaveToJsonFile()
+                return True
+            else:
+                return False
         else:
             return False
 
