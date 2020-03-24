@@ -7,7 +7,7 @@ class APIController:
     def __init__(self, session):
         self.session = session
         self.MoneyController = MoneyController.MoneyController()
-        self.HumanController = HumanController.HumanController()
+        self.HumanController = HumanController.HumanController(session)
         pass
 
     def GenerateEvidences(self, hackingPoints: int, victim, hacker: HumanController.HM):

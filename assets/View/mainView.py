@@ -24,8 +24,9 @@ class mainView():
         self.userId = userId
         self.event = event
         self.hC = None
-        self.HController = HumanController()
+        self.HController = HumanController(self.session)
         self.MController = MoneyController()
+        # sefl.targetAccaunt = 0
         self.isDone = False
         pass
     def ParseEvent(self, event):
@@ -35,6 +36,7 @@ class mainView():
             # user = Human().LoadFromJson('./DB/' + str(self.userId) + '.json').
             if not self.HController.CheckIfIdIsLoaded(vkID= self.userId):
                 user = self.HController.LoadHumanFromVkID(vkID= self.userId)
+                self.HController.userId = self.userId
             else:
                 user = self.HController.GetUserById(vkID= self.userId)
             if user:
@@ -42,48 +44,31 @@ class mainView():
                     b64 = str(base64.b64decode(event.raw['object']['text']), 'utf-8')
                     a = b64[:len('TransferMoneyTo ')] 
                     if b64[:len('TransferMoneyTo ')] == 'TransferMoneyTo ':
-                        self.MController.TransferMoney(to= int(b64[len('TransferMoneyTo '):]), fromVkID= user.vkId)
+                        # self.MController.TransferMoney(to= int(b64[len('TransferMoneyTo '):]), fromVkID= user.vkId)
+                        self.HController.targetAccaunt = int(b64[len('TransferMoneyTo '):])
                         self.session.method('messages.send', {
-                            'message': 'Введите сумму перевода',
+                            'message': 'Выберите действие с профилем',
                             'peer_id': self.userId,
                             'random_id': random.randint(1, 10000000000000),
-                            'keyboard': keyboards.nullKB
+                            'keyboard': keyboards.additionalFunctionsKB
                         })       
                         return False                 
                 except Exception as e:
                     pass
-                if self.MController.tansactionInProgress:
-                    if self.MController.ParseEvent(self, event.raw['object']):
-                        a = 0
-                        self.session.method('messages.send', {
-                            'message': 'Сумма успешно переведена',
-                            'peer_id': self.userId,
-                            'random_id': random.randint(1, 10000000000000),
-                            'keyboard': keyboards.mainKB
-                        })
-                        pass
-                    else:
-                        self.session.method('messages.send', {
-                            'message': 'Во время транзакции что-то пошло не так. Проверьте плетежные реквезиты и свой счет, если там недостаточно денег',
-                            'peer_id': self.userId,
-                            'random_id': random.randint(1, 10000000000000),
-                            'keyboard': keyboards.mainKB
-                        })
-                        pass
-                    pass
+
+                if not 'payload' in event.raw['object'].keys():
+                    a= 0
+                if self.HController.ParseEvent(event, user, self.session):
                     return True
                 else:
-                    self.session.method('messages.send', {
-                        'message': 'Main Menu',
-                        'peer_id': self.userId,
-                        'random_id': random.randint(1, 10000000000000),
-                        'keyboard': keyboards.mainKB
-                    })
-                    if self.HController.ParseEvent(event, user, self.session):
-                        return True
-            else:
                 # TODO: error
-                pass
+                    # self.session.method('messages.send', {
+                    #     'message': 'Main Menu',
+                    #     'peer_id': self.userId,
+                    #     'random_id': random.randint(1, 10000000000000),
+                    #     'keyboard': keyboards.mainKB
+                    # })
+                    pass
         else:
             if not self.hC:
                 self.hC = HumanCreator.HumanCreator(id= str(self.userId), session= self.session)

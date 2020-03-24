@@ -12,7 +12,7 @@ class MoneyController:
 
     def TransferMoney(self, to: int, fromVkID: int):
         # TODO: transaction host name
-        hC = HumanController.HumanController()
+        hC = HumanController.HumanController(None)
         self.seed = hC.LoadHumanFromVkID(fromVkID)
         self.peerAPay = to
         self.tansactionInProgress = True
@@ -37,7 +37,7 @@ class MoneyController:
             transferAmount = int(event['text'])
             if transferAmount > 0:
                 if self.seed.RemoveMoney(transferAmount):
-                    self.peer = HumanController.HumanController().LoadHumanFromAPayID(self.peerAPay)
+                    self.peer = HumanController.HumanController(None).LoadHumanFromAPayID(self.peerAPay)
                     self.peer.AddMoney(transferAmount)
                     self.tansactionInProgress = False
                     return True

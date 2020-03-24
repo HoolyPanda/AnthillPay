@@ -1,6 +1,6 @@
 import json
 mKB = {
-    'one_time': False,
+    'one_time': True,
     'buttons':
     [
         [
@@ -182,6 +182,110 @@ bKB = {
         ]   
     ]
 }
+wKB = {
+    'one_time': True,
+    'buttons':
+    [        
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"shogun\"}",
+                        "label": "ShoGun"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"sintech\"}",
+                        "label": "SinTech"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"cybersteel\"}",
+                        "label": "CyberSteel"
+                    },
+                "color": "secondary"
+            }               
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"c-corp\"}",
+                        "label": "C-Corp"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"dell\"}",
+                        "label": "Dell"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"obsnews\"}",
+                        "label": "OBS News"
+                    },
+                "color": "secondary"
+            }               
+        ],
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"workless\"}",
+                        "label": "Безработный"
+                    },
+                "color": "secondary"
+            } 
+        ]
+        
+    ]
+}
+
+trKB = {
+    'one_time': True,
+    'buttons':
+    [        
+        [
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"additionalFunction\":\"Перевести деньги\"}",
+                        "label": "Перевести деньги"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"additionalFunction\":\"Валидация\"}",
+                        "label": "Валидация"
+                    },
+                "color": "secondary"
+            }                
+        ]  
+    ]
+}
+
 wKB = {
     'one_time': True,
     'buttons':
@@ -460,3 +564,4 @@ hairKB = json.dumps(hairKB)
 humanCreatorKB = json.dumps(hCKB)
 eyeColorKB = json.dumps(eKB)
 mainKB = json.dumps(mKB)
+additionalFunctionsKB = json.dumps(trKB)

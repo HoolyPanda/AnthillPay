@@ -35,7 +35,7 @@ def main():
         lps = bot_longpoll.VkBotLongPoll(session, 192654141)
         # apiController = APiController.APIController(session) 
         
-        apiController = APiController.APIController(session) 
+        apiController = APiController.APIController(session= session) 
         for event in bot_longpoll.VkBotLongPoll.listen(lps):
             for view in views:
                 if view.userId not in userIds:
