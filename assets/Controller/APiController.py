@@ -32,7 +32,7 @@ class APIController:
         elif hackingPoints <= 50:
             evidences.update({ 
                 'work': hacker.work,
-                'hairColor': hacker.hairColor,
+                'hair': hacker.hairColor,
                 'district': hacker.district                
                 })
             pass
