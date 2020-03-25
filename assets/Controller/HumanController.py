@@ -1,5 +1,6 @@
 import assets.Model.HumanModel as HM
-import assets.Controller.MoneyController as MC
+# import assets.Controller.MoneyController as MC
+from assets.Controller.MoneyController import MoneyController as MC
 import assets.View.keyboards as keyboards
 # import assets.Model.HumanModel
 import os
@@ -11,7 +12,7 @@ class HumanController:
         self.loadedAccounts = []
         self.targetAccaunt = 0
         self.isTransferingMoney = False
-        self.MController = MC.MoneyController()
+        self.MController = MC()
         # self.session = sessiosn
         self.userId = 0
         pass
@@ -117,7 +118,7 @@ class HumanController:
                     elif 'Перевести деньги' in payload.values():
                         self.isTransferingMoney = True
                         self.MController.tansactionInProgress = True
-                        self.MController.TransferMoney(to= self.targetAccaunt, fromVkID= self.userId)
+                        self.MController.TransferMoney(to= self.LoadHumanFromAPayID(self.targetAccaunt), fromUser= self.LoadHumanFromVkID(self.userId))
                         session.method('messages.send', {
                             'message': 'Введите сумму для перевода',
                             'peer_id': self.userId,

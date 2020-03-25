@@ -1,6 +1,7 @@
 
 import assets.Model.HumanModel as HM
-import assets.Controller.HumanController as HC
+# from assets.Controller.HumanController import HumanController as HC
+# import assets.Controller.HumanController as HC
 # from assets.Controller.HumanController import HumanController
 
 
@@ -13,11 +14,11 @@ class MoneyController:
         self.peerAPay: int
         pass
 
-    def TransferMoney(self, to: int, fromVkID: int):
+    def TransferMoney(self, to: HM.Human, fromUser: HM.Human):
         # TODO: transaction host name
-        hC = HC.HumanController(None)
-        self.seed = hC.LoadHumanFromVkID(fromVkID)
-        self.peerAPay = to
+        # hC = HC(None)
+        self.seed = fromUser
+        self.peer = to
         self.tansactionInProgress = True
 
     def FixedMoneyTransaction(self, to: HM.Human, frm: HM.Human, amount: int):
@@ -39,8 +40,9 @@ class MoneyController:
         if event['text'].isdigit():
             transferAmount = int(event['text'])
             if transferAmount > 0:
-                if self.seed.RemoveMoney(transferAmount):
-                    self.peer = HC.HumanController(None).LoadHumanFromAPayID(self.peerAPay)
+
+                if self.seed.id != self.peer.id and self.seed.RemoveMoney(transferAmount):
+                    # self.peer = HC(None).LoadHumanFromAPayID(self.peerAPay)
                     self.peer.AddMoney(transferAmount)
                     self.tansactionInProgress = False
                     return True
