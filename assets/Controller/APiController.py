@@ -1,16 +1,16 @@
 import json
 import random
-import assets.Controller.HumanController as HumanController
+import assets.Controller.HumanController as HC
 import assets.Controller.MoneyController as MoneyController
 
 class APIController:
     def __init__(self, session):
         self.session = session
         self.MoneyController = MoneyController.MoneyController()
-        self.HumanController = HumanController.HumanController(session)
+        self.HumanController = HC.HumanController(session)
         pass
 
-    def GenerateEvidences(self, hackingPoints: int, victim, hacker: HumanController.HM):
+    def GenerateEvidences(self, hackingPoints: int, victim, hacker: HC.HM):
         evidences = {}
         if hackingPoints <= 20:
             evidences.update({
