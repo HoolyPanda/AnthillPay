@@ -96,7 +96,6 @@ class HumanController:
                 if self.targetAccaunt != 0:
 
                     if 'Валидация' in payload.values():
-                        # TODO validationtarget 
                         targetUser = self.LoadHumanFromAPayID(self.targetAccaunt)
                         currentUser = self.GetUserById(self.userId)
                         if targetUser.work == currentUser.work:
