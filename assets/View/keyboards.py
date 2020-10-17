@@ -209,8 +209,8 @@ wKB = {
                 "action":
                     {
                         "type":"text",
-                        "payload": "{\"workPlace\":\"cybersteel\"}",
-                        "label": "CyberSteel"
+                        "payload": "{\"workPlace\":\"vancorp\"}",
+                        "label": "Vancorp"
                     },
                 "color": "secondary"
             }               
@@ -250,10 +250,29 @@ wKB = {
                     {
                         "type":"text",
                         "payload": "{\"workPlace\":\"workless\"}",
-                        "label": "Безработный"
+                        "label": "Иная"
                     },
                 "color": "secondary"
-            } 
+            },
+            
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"bfg\"}",
+                        "label": "BFG"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"nextgen\"}",
+                        "label": "NextGen"
+                    },
+                "color": "secondary"
+            }               
         ]
         
     ]
@@ -313,8 +332,8 @@ wKB = {
                 "action":
                     {
                         "type":"text",
-                        "payload": "{\"workPlace\":\"cybersteel\"}",
-                        "label": "CyberSteel"
+                        "payload": "{\"workPlace\":\"vancorp\"}",
+                        "label": "Vancorp"
                     },
                 "color": "secondary"
             }               
@@ -353,11 +372,29 @@ wKB = {
                 "action":
                     {
                         "type":"text",
+                        "payload": "{\"workPlace\":\"bfg\"}",
+                        "label": "BFG"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
+                        "payload": "{\"workPlace\":\"nextgen\"}",
+                        "label": "NextGen"
+                    },
+                "color": "secondary"
+            },
+            {
+                "action":
+                    {
+                        "type":"text",
                         "payload": "{\"workPlace\":\"workless\"}",
                         "label": "Безработный"
                     },
                 "color": "secondary"
-            } 
+            },
         ]
         
     ]
